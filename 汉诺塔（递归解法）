@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+void hanoi(int n , char a , char b , char c);//汉诺塔的起始柱为a，过渡柱为b，目标柱为c。
+ 
+int main(){
+    char a = 'A';
+    char b = 'B';
+    char c = 'C'; 
+    //声明汉诺塔的三根柱子序号分别是A，B，C。
+    int n;
+ 
+    printf("输入起始柱上的盘子数：\n");
+    scanf("%d" , &n);
+    hanoi(n , a , b , c);
+    return 0;
+}
+ 
+void hanoi(int n , char a , char b , char c){
+//将从1到n-1的所盘子视为一个整体①（Ⅰ层递归）。
+//将第n个盘子视为一个整体②（Ⅱ层递归）。
+//整个hanoi函数仅需要关注Ⅰ与Ⅱ之间的调用关系（写入else中）和基线条件（写入if中）。
+    if(n == 1){
+        printf("盘子%d从%c到%c\n", n , a , c);
+        }//将盘子直接从A挪至C
+    
+    else{
+        hanoi(n-1 , a , c , b);//将①挪至过渡柱。
+        printf("盘子%d从%c到%c\n" , n , a , c);//将②挪至目标柱。
+        hanoi(n-1 , b , a , c);//将①从过渡柱挪至目标柱。
+        }
+}
+
